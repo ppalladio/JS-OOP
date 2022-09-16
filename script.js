@@ -10,11 +10,21 @@ const Person = function (firstName, birthYear) {
     this.firstName = firstName;
     this.birthYear = birthYear;
 };
-//** create instance use 'new' keyword */
 
+//**-static method (instance method) */
+
+Person.welcome = function () {
+    console.log('grettings');
+    console.log(this);
+};
+
+//**' wont work on instances me*/
+//** create instance use 'new' keyword */
 const ana = new Person('ana', 1991);
+//**ana.welcome()// ana.welcome is not a function
 
 console.log(ana instanceof Person); // true
+
 //** to add methods, prototypal inheritance */
 
 Person.prototype.getAge = function (year) {
@@ -29,17 +39,13 @@ console.log(ana.__proto__);
 console.log(Person.prototype);
 
 //** add property */
-
 Person.prototype.species = 'Homo Sacpiens'; // stored in the __proto__ property
 
 //**  proto chain and inheritance
-
 console.log(ana.__proto__.__proto__);
 
 //** array proto */
-
 const arr = Array.from({ length: 7 }, (_, i) => i + 1);
-
 console.log(arr.__proto__.__proto__);
 
 //** add new method to Array constructor function */
@@ -64,17 +70,24 @@ class PersonaEs {
     }
 
     set fullName(name) {
-        if (name.includes(' ')) { this._fullName = name //**' use _to avoid duplication conflict */
-            
+        if (name.includes(' ')) {
+            this._fullName = name; //**' use _to avoid duplication conflict */
         } else {
-            alert (`${name} is not a fullName`)
+            alert(`${name} is not a fullName`);
         }
     }
     //**' the underlying parameter is still _fullName, just use get to so we can call jessica.fullName instead of jessica._fullName . checkout the end for the output notes*/
-    get fullName(){
-        return this._fullName
+    get fullName() {
+        return this._fullName;
     }
+
+    //**. static method */
+    static welcome() {
+        console.log('greetings');
+    }
+
 }
+PersonaEs.welcome()
 
 const Jessica = new PersonaEs('Jessica Davis', 1990);
 
@@ -104,18 +117,15 @@ account.lastest = 50;
 
 console.log(account.movements); //[ 100, 200, 300, 400, 500, 50 ]
 
-
 //: Jessica console output
 /**
  * birthYear: 1990
  * ' _fullName: "Jessica Davis"   line 67 as set to _fullName
  * ' age: (...) the dots are from get and set, will be shown once clicked
- * ' fullName: (...) this wouldnt be here with set fullName  
+ * ' fullName: (...) this wouldnt be here with set fullName
  * [[Prototype]]: Object
  * age: (...)
  * constructor: class PersonaEs
  * currentAge: ƒ currentAge()
  * ' fullName: "Jessica Davis"  nor this
-*/
-
-
+ */
