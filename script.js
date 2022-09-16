@@ -50,18 +50,72 @@ Array.prototype.unique = function () {
 //**- es6 syntex*/
 
 class PersonaEs {
-    constructor(firstName, birthYear) {
-        this.firstName = firstName;
+    constructor(fullName, birthYear) {
+        this.fullName = fullName;
         this.birthYear = birthYear;
     }
     //** method is added to the proto */
-    currentAge(){
-        console.log(2022-this.birthYear);
+    currentAge() {
+        console.log(2022 - this.birthYear);
+    }
+
+    get age() {
+        return 2022 - this.birthYear;
+    }
+
+    set fullName(name) {
+        if (name.includes(' ')) { this._fullName = name //**' use _to avoid duplication conflict */
+            
+        } else {
+            alert (`${name} is not a fullName`)
+        }
+    }
+    //**' the underlying parameter is still _fullName, just use get to so we can call jessica.fullName instead of jessica._fullName . checkout the end for the output notes*/
+    get fullName(){
+        return this._fullName
     }
 }
 
-const Jessica = new PersonaEs ('Jessica', 1990)
+const Jessica = new PersonaEs('Jessica Davis', 1990);
 
-Jessica.currentAge()
-
+Jessica.currentAge();
+console.log(Jessica.age);
 //**. classes are not hoisted, need to init before using */
+
+//- getter and setter
+
+const account = {
+    owner: 'Jessica',
+    movements: [100, 200, 300, 400, 500],
+
+    //**getter */
+    get latest() {
+        return this.movements.slice(-1).pop();
+    },
+
+    //**they(get and set, dont need paretethesis) more like a property than a function, and it needs exactly one parameter. */
+    set lastest(mov) {
+        this.movements.push(mov);
+    },
+};
+console.log(account.latest);
+
+account.lastest = 50;
+
+console.log(account.movements); //[ 100, 200, 300, 400, 500, 50 ]
+
+
+//: Jessica console output
+/**
+ * birthYear: 1990
+ * ' _fullName: "Jessica Davis"   line 67 as set to _fullName
+ * ' age: (...) the dots are from get and set, will be shown once clicked
+ * ' fullName: (...) this wouldnt be here with set fullName  
+ * [[Prototype]]: Object
+ * age: (...)
+ * constructor: class PersonaEs
+ * currentAge: ƒ currentAge()
+ * ' fullName: "Jessica Davis"  nor this
+*/
+
+
