@@ -11,17 +11,17 @@ const Person = function (firstName, birthYear) {
     this.birthYear = birthYear;
 };
 
-//**-static method (instance method) */
+//**> static method (instance method) */
 
 Person.welcome = function () {
     console.log('grettings');
     console.log(this);
 };
 
-//**' wont work on instances me*/
+//**' wont work on instances method*/
 //** create instance use 'new' keyword */
-const ana = new Person('ana', 1991);
-//**ana.welcome()// ana.welcome is not a function
+
+const ana = new Person('ana', 1991); //ana.welcome() ana.welcome is not a function
 
 console.log(ana instanceof Person); // true
 
@@ -53,7 +53,7 @@ Array.prototype.unique = function () {
     return [new Set(this)];
 };
 
-//**- es6 syntex*/
+//**> es6 syntex*/
 
 class PersonaEs {
     constructor(fullName, birthYear) {
@@ -76,7 +76,7 @@ class PersonaEs {
             alert(`${name} is not a fullName`);
         }
     }
-    //**' the underlying parameter is still _fullName, just use get to so we can call jessica.fullName instead of jessica._fullName . checkout the end for the output notes*/
+    //**' the underlying parameter is still _fullName, just use get to so we can call jessica.fullName instead of jessica._fullName. checkout the end for the output notes*/
     get fullName() {
         return this._fullName;
     }
@@ -85,9 +85,8 @@ class PersonaEs {
     static welcome() {
         console.log('greetings');
     }
-
 }
-PersonaEs.welcome()
+PersonaEs.welcome();
 
 const Jessica = new PersonaEs('Jessica Davis', 1990);
 
@@ -95,7 +94,7 @@ Jessica.currentAge();
 console.log(Jessica.age);
 //**. classes are not hoisted, need to init before using */
 
-//- getter and setter
+//> getter and setter
 
 const account = {
     owner: 'Jessica',

@@ -1,7 +1,7 @@
 {
     "My additional comments tags ": [
         {
-            "tag": "-",
+            "tag": ">",
             "color": "#f29e4c",
             "strikethrough": false,
             "underline": false,
