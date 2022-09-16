@@ -81,8 +81,8 @@ class PersonaEs {
         return this._fullName;
     }
 
-    
-    static welcome() { //** static method */
+    static welcome() {
+        //** static method */
         console.log('greetings');
     }
 }
@@ -125,23 +125,50 @@ const PersonProto = {
         console.log(age);
     },
 
-    init(firstName, birthYear){
+    init(firstName, birthYear) {
         this.firstName = firstName;
         this.birthYear = birthYear;
-    }
-}
-
+    },
+};
 
 const sven = Object.create(PersonProto); //. it is empty at first
-sven.birthYear = 1990
-sven.getAge(2002)
+sven.birthYear = 1990;
+sven.getAge(2002);
 
 const hadar = Object.create(PersonProto); //. use init method
 
-hadar.init('hadar', 1980)
-hadar.getAge(2002)
+hadar.init('hadar', 1980);
+hadar.getAge(2002);
+
+//> class inheritance
+
+const classInheretance = function () {
+    // create isolated block
+    const Person = function (firstName, birthYear) {
+        this.firstName = firstName;
+        this.birthYear = birthYear;
+    };
+    Person.prototype.getAge = function (year) {
+        const age = year - this.birthYear;
+        console.log(age);
+    };
+};
 
 
+
+const Student = function (firstName, birthYear, course) {
+    Person.call(this, firstName, birthYear); //' use call method to manually set this keyword
+    this.course = course;
+};
+Student.prototype = Object.create(Person.prototype); //' must be declared right after the initialization
+const mike = new Student('mike', 2000, 'cs');
+Student.prototype.introduce = function () {
+    console.log(`my name is ${this.firstName}`);
+};
+mike.introduce();//my name is mike
+mike.getAge(2030)//30
+
+Student.prototype.constructor = Student; //! make sure the prototype is Student, or it will point to its parent class
 
 
 
