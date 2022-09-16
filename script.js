@@ -81,8 +81,8 @@ class PersonaEs {
         return this._fullName;
     }
 
-    //**. static method */
-    static welcome() {
+    
+    static welcome() { //** static method */
         console.log('greetings');
     }
 }
@@ -100,12 +100,12 @@ const account = {
     owner: 'Jessica',
     movements: [100, 200, 300, 400, 500],
 
-    //**getter */
+    //*get
     get latest() {
         return this.movements.slice(-1).pop();
     },
 
-    //**they(get and set, dont need paretethesis) more like a property than a function, and it needs exactly one parameter. */
+    //*set
     set lastest(mov) {
         this.movements.push(mov);
     },
@@ -115,6 +115,35 @@ console.log(account.latest);
 account.lastest = 50;
 
 console.log(account.movements); //[ 100, 200, 300, 400, 500, 50 ]
+//**get and set, dont need paretethesis are more like property than function, and SET needs exactly one parameter. */
+
+//> method object.create
+
+const PersonProto = {
+    getAge(year) {
+        const age = year - this.birthYear; // it gets this keyword because it is not an arrow function, string literal.
+        console.log(age);
+    },
+
+    init(firstName, birthYear){
+        this.firstName = firstName;
+        this.birthYear = birthYear;
+    }
+}
+
+
+const sven = Object.create(PersonProto); //. it is empty at first
+sven.birthYear = 1990
+sven.getAge(2002)
+
+const hadar = Object.create(PersonProto); //. use init method
+
+hadar.init('hadar', 1980)
+hadar.getAge(2002)
+
+
+
+
 
 //: Jessica console output
 /**
