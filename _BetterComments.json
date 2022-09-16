@@ -1,0 +1,49 @@
+{
+    "My additional comments tags ": [
+        {
+            "tag": "-",
+            "color": "#f29e4c",
+            "strikethrough": false,
+            "underline": false,
+            "backgroundColor": "transparent",
+            "bold": false,
+            "italic": true
+        },
+        {
+            "tag": "'",
+            "color": "#E85C90",
+            "strikethrough": false,
+            "underline": false,
+            "backgroundColor": "transparent",
+            "bold": true,
+            "italic": false
+        },
+        {
+            "tag": "#",
+            "color": "#EDE342",
+            "strikethrough": false,
+            "underline": true,
+            "backgroundColor": "transparent",
+            "bold": false,
+            "italic": false
+        },
+        {
+            "tag": ".",
+            "color": "#e0c3fc",
+            "strikethrough": false,
+            "underline": true,
+            "backgroundColor": "transparent",
+            "bold": false,
+            "italic": false
+        },
+        {
+            "tag": ":",
+            "color": "#f15025",
+            "strikethrough": false,
+            "underline": false,
+            "backgroundColor": "#f4f4f6",
+            "bold": true,
+            "italic": false
+        }
+    ]
+}
