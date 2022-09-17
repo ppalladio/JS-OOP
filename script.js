@@ -140,7 +140,8 @@ const hadar = Object.create(PersonProto); //. use init method
 hadar.init('hadar', 1980);
 hadar.getAge(2002);
 
-//> class inheritance
+//~* class inheritance
+//>1 constructor inheritance]
 
 const classInheretance = function () {
     // create isolated block
@@ -154,8 +155,6 @@ const classInheretance = function () {
     };
 };
 
-
-
 const Student = function (firstName, birthYear, course) {
     Person.call(this, firstName, birthYear); //' use call method to manually set this keyword
     this.course = course;
@@ -165,12 +164,27 @@ const mike = new Student('mike', 2000, 'cs');
 Student.prototype.introduce = function () {
     console.log(`my name is ${this.firstName}`);
 };
-mike.introduce();//my name is mike
-mike.getAge(2030)//30
+mike.introduce(); //my name is mike
+mike.getAge(2030); //30
 
 Student.prototype.constructor = Student; //! make sure the prototype is Student, or it will point to its parent class
 
-
+//>2 Es6 class inheritance
+class StudentEs extends PersonaEs {
+    // if no new parameter is introduced, there is no need to call constructor. but constructor needs to be called first.
+    constructor(fullName, birthYear, course) {
+        super(fullName, birthYear);
+        this.course = course;
+    }
+    // overwrite the currentAge function
+    currentAge() {
+        // because this function appears first in the prototype chain
+        console.log(2022 - this.birthYear + 10);
+    }
+}
+const zac = new StudentEs('zac mac', 2000, 'cs');
+console.log(zac);
+zac.currentAge(); ///2
 
 //: Jessica console output
 /**
