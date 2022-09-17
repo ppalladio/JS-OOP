@@ -186,6 +186,23 @@ const zac = new StudentEs('zac mac', 2000, 'cs');
 console.log(zac);
 zac.currentAge(); ///2
 
+
+//> 3 object.create method
+
+const jim = Object.create(PersonProto);
+
+const StudentProto = Object.create(PersonProto); //. by using the create, personproto is the prototype of studentproto, which means perosonproto inherites from studentproto
+
+StudentProto.init= function(fullName, birthYear,course){
+    PersonProto.init.call(this, fullName, birthYear)
+    this.course = course
+}
+
+const jay = Object.create(StudentProto); //. jay's prototype is studentproto , using create we establish hierarchy from jay(child) -> studentproto(child) -> personproto(child)-> object(root) 
+
+jay.init('jay', 2000, 'cs'); 
+jay.getAge(2020)
+
 //: Jessica console output
 /**
  * birthYear: 1990
