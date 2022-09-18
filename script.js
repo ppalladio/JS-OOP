@@ -186,22 +186,62 @@ const zac = new StudentEs('zac mac', 2000, 'cs');
 console.log(zac);
 zac.currentAge(); ///2
 
-
 //> 3 object.create method
 
 const jim = Object.create(PersonProto);
 
 const StudentProto = Object.create(PersonProto); //. by using the create, personproto is the prototype of studentproto, which means perosonproto inherites from studentproto
 
-StudentProto.init= function(fullName, birthYear,course){
-    PersonProto.init.call(this, fullName, birthYear)
-    this.course = course
+StudentProto.init = function (fullName, birthYear, course) {
+    PersonProto.init.call(this, fullName, birthYear);
+    this.course = course;
+};
+
+const jay = Object.create(StudentProto); //. jay's prototype is studentproto , using create we establish hierarchy from jay(child) -> studentproto(child) -> personproto(child)-> object(root)
+
+jay.init('jay', 2000, 'cs');
+jay.getAge(2020);
+
+//~* encapsulation
+
+class Account {
+    l; // public fields (instance based)
+    location = navigator.language;
+
+    // private fields (instance based)
+
+    #movements = [];
+    #pin;
+
+    constructor(owner, currency, pin) {
+        this.owner = owner;
+        this.currency = currency;
+        this.#pin = pin;
+    }
+
+    getMov() {
+        return this.#movements; // private fields
+    }
+
+    deposit(val) {
+        this.#movements.push(val);
+    }
+
+    withdraw(val) {
+        this.#movements.push(val);
+    }
+
+    requestLoan(val) {
+        if (this.#approveLoan(val)) {
+            this.deposit(val);
+        }
+    }
+
+    // private methods
+    #approveLoan(val) {
+        return true;
+    }
 }
-
-const jay = Object.create(StudentProto); //. jay's prototype is studentproto , using create we establish hierarchy from jay(child) -> studentproto(child) -> personproto(child)-> object(root) 
-
-jay.init('jay', 2000, 'cs'); 
-jay.getAge(2020)
 
 //: Jessica console output
 /**
