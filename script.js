@@ -205,8 +205,8 @@ jay.getAge(2020);
 //~* encapsulation
 
 class Account {
-    l; // public fields (instance based)
-    location = navigator.language;
+    // public fields (instance based)
+    location = navigator.language //not working atm
 
     // private fields (instance based)
 
@@ -225,15 +225,18 @@ class Account {
 
     deposit(val) {
         this.#movements.push(val);
+        return this;
     }
 
     withdraw(val) {
         this.#movements.push(val);
+        return this;
     }
 
     requestLoan(val) {
         if (this.#approveLoan(val)) {
             this.deposit(val);
+            return this;
         }
     }
 
@@ -242,6 +245,12 @@ class Account {
         return true;
     }
 }
+
+// chaining
+
+const acc1 = new Account('amy', 'USD', 1111);
+
+acc1.deposit(100).deposit(100).withdraw(100); //. need to add return this( current object) to make the method chainable
 
 //: Jessica console output
 /**
